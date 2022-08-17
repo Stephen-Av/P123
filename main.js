@@ -18,5 +18,19 @@ function modelLoaded() {
 function gotPoses(results) {
     if (results.length > 0) {
         console.log(results);
+        noseX = results[0].pose.nose.x;
+        noseY = results[0].pose.nose.y;
+        console.log("Nose X = " + noseX + " Nose Y = " + noseY);
+        leftwristX = results[0].pose.leftWrist.x;
+        rightwristX = results[0].pose.rightWrist.x;
+        difference = floor(leftwristX - rightwristX);
+        console.log("Left Wrist X = " + leftwristX + " Right Wrist X = " + rightwristX + " Difference = " + difference);
     }
+}
+function draw() {
+    background("gray");
+    document.getElementById("font_size").innerHTML = "Font Size of the Text is " + difference + " px";
+    textSize(difference);
+    fill("purple");
+    text("Stephen", noseX, noseY);
 }
